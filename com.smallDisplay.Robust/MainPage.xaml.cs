@@ -32,7 +32,7 @@ namespace com.smallDisplay.Robust
         private readonly static SolidColorBrush solidBlack = new SolidColorBrush(solidBlacks);
 
 
-        private readonly static Color solidBorderBlacks = Color.FromArgb(255, 20, 20, 20);
+        private readonly static Color solidBorderBlacks = Color.FromArgb(255, 10, 10, 10);
         private static readonly SolidColorBrush solidBorderBlack = new SolidColorBrush(solidBorderBlacks);
 
         private static Color ColorOfLetters = Colors.Red;
@@ -60,7 +60,7 @@ namespace com.smallDisplay.Robust
         ColorPicker colorPicker = new ColorPicker();
         StackPanel stack = new StackPanel();
         bool text = false, shadow = false;
-        
+        DateTime DateTime = new DateTime();
         
 
         public MainPage()
@@ -73,15 +73,17 @@ namespace com.smallDisplay.Robust
             MoveLetters.SetIntArrToNum(Arr,0);
             InputStringToDisplay.Focus(FocusState.Pointer);
             
+            
+            
         }
 
         private void Dtimer_Tick(object sender, object e)
         {
             
-            MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);
+            /*MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);*/
             MoveLetters.ColorOcupiedLabels(Arr, rectangle, ColorofLetters, solidBlack, LetterBorrders);
 
-            if (Repeat.IsChecked == false)
+            /*if (Repeat.IsChecked == false)
             {
                 RepeatNOtChecked();
             } else if (Repeat.IsChecked == true)
@@ -90,8 +92,8 @@ namespace com.smallDisplay.Robust
             }
 
 
-            if (counter == 10) counter = 0;
-
+            if (counter == 10) counter = 0;*/
+            MoveLetters.InsertTextToMiddle(Arr,row,col);
 
         }
 

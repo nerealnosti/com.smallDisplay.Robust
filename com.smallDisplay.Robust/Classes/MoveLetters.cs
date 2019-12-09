@@ -162,7 +162,48 @@ namespace com.smallDisplay.Robust.Classes
 
         }
         
-        
+        public static void InsertTextToMiddle(int [,] Arr,int row, int col)
+        {
+            SetIntArrToNum(Arr, 0);
+            string time = DateTime.Now.ToString("HH:mm:ss");
+            var timer = time.ToQueue();
+            int t = timer.Count;
+            int n = 0;
+            // mozda metod koji ce brojati koliko redova slova ukuono imaju
+            var sirina = (row - t * 9) / 2;
+            var visina = (col - 9) / 2;
+
+
+            for (int i = 0; i < t; i++)
+            {
+
+                var letter = (char) timer.Dequeue();
+                var ArrLetter = Letters.ReturnArrLetter(letter);
+                
+
+                for (int j = 0; j < ArrLetter.GetLength(0); j++)
+                {
+                    for (int k = 0; k < ArrLetter.GetLength(1); k++)
+                    {
+                        if (ArrLetter[k,j] == 1)
+                        {
+                            Arr[j+n+sirina, k + visina] = 1;
+                        }
+                        else if (ArrLetter[k, j] == 2)
+                        {
+                            Arr[j + n + sirina, k + visina] = 2;
+                        }
+
+                        
+                    }
+
+                   
+                }
+
+                n += ArrLetter.GetLength(0);
+
+            }
+        }
 
         /// <summary>
         ///  extension method that return char array from string to queue list 
