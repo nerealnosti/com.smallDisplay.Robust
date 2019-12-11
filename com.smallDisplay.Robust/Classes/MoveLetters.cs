@@ -161,23 +161,72 @@ namespace com.smallDisplay.Robust.Classes
             }
 
         }
-        
-        public static void InsertTextToMiddle(int [,] Arr,int row, int col)
+
+
+        internal static  bool CheckForSecChar(char specChar, char equalityCheckChar)
         {
-            SetIntArrToNum(Arr, 0);
-            string time = DateTime.Now.ToString("HH:mm:ss");
-            var timer = time.ToQueue();
-            int t = timer.Count;
+
+            return specChar == equalityCheckChar ? true : false;
+
+        }
+
+        internal static void CheckForSecCharNext(char specChar,ref bool date,ref bool time)
+        {
+
+            if (specChar == 'D')
+            {
+                date = true;
+                time = false;
+            }
+            else if (specChar == 'T')
+            {
+                date = false;
+                time = true;
+            }
+
+        }
+
+        internal static void InsertTextToMiddle(int [,] Arr,int row, int col,bool Time, bool Date, string str,bool trueORfalse)
+        {
+            if (trueORfalse)
+            {
+                SetIntArrToNum(Arr, 0); 
+            }
+            string time = "";
+            string date = "";
+
+            Queue TimeOrDate = new Queue();
+            int t = 0;
+            if (Time)
+            {
+                time = DateTime.Now.ToString("HH:mm:ss");
+                TimeOrDate = time.ToQueue();
+                t = TimeOrDate.Count;
+            }else if (Date)
+            {
+                date = DateTime.Now.ToString("dd-MMM-yy").ToUpper();
+                TimeOrDate = date.ToQueue();
+                t = TimeOrDate.Count;
+            }
+            else
+            {
+                TimeOrDate = str.ToUpper().ToQueue();
+                t = TimeOrDate.Count;
+            }
+
+            
+
+
             int n = 0;
             // mozda metod koji ce brojati koliko redova slova ukuono imaju
-            var sirina = (row - t * 9) / 2;
+            var sirina = ((row - t * 9) / 2)-1;
             var visina = (col - 9) / 2;
 
 
             for (int i = 0; i < t; i++)
             {
 
-                var letter = (char) timer.Dequeue();
+                var letter = (char) TimeOrDate.Dequeue();
                 var ArrLetter = Letters.ReturnArrLetter(letter);
                 
 
@@ -215,7 +264,33 @@ namespace com.smallDisplay.Robust.Classes
             return new Queue (str.ToCharArray());
         }
 
-        
+        public static Queue AddAtFrontOfQueue(this Queue que,char td)
+        {
+
+            Queue ques = new Queue();
+            ques = (Queue) que.Clone();
+            que.Clear();
+            string str = "";
+                
+            if (td == 'D')
+            {
+                 str = DateTime.Now.ToString("\tdd-MMM-yyyy\t").ToUpper();
+
+            }
+            else if (td == 'T')
+            {
+                str = DateTime.Now.ToString("\t HH:mm\t");
+            }
+            
+            
+            que = str.ToQueue();
+            foreach (var item in ques)
+            {
+                que.Enqueue((char)item);
+            }
+
+            return que;
+        }
 
 
     }

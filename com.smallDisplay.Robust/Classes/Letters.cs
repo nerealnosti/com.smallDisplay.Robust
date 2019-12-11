@@ -317,9 +317,9 @@ namespace com.smallDisplay.Robust.Classes
                                                    { 0,0,0,0,0 },
                                                    { 0,0,0,0,0 },
                                                    { 0,0,0,0,0 },
-                                                   { 0,2,2,0,0 },
-                                                   { 0,2,2,0,0 },
-                                                   { 0,2,2,0,0 },
+                                                   { 0,0,0,0,0 },
+                                                   { 0,0,0,0,0 },
+                                                   { 0,0,0,0,0 },
                                                    { 0,0,0,0,0 },
                                                    { 0,0,0,0,0 } };
 
@@ -442,6 +442,16 @@ namespace com.smallDisplay.Robust.Classes
                                                      { 0,0,0,1,1,2,0,0,0 },
                                                      { 0,0,0,0,0,0,0,0,0 } };
 
+        internal static int[,] Dash = new int[,] {   { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,1,1,1,1,1,2,0 },
+                                                     { 0,0,1,1,1,1,1,2,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 },
+                                                     { 0,0,0,0,0,0,0,0,0 } };
+
         /// <summary>
         /// Return int Arr based on char input
         /// </summary>
@@ -536,6 +546,8 @@ namespace com.smallDisplay.Robust.Classes
                     return ZERO;
                 case ':':
                     return TwoDot;
+                case '-':
+                    return Dash;
                 default:
                     return Space;
 

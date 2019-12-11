@@ -43,7 +43,7 @@ namespace com.smallDisplay.Robust
 
         internal const short row = 100;
         internal const short col = 20;
-        private readonly sbyte sizeOfRect = 6;
+        private readonly sbyte sizeOfRect = 8;
         private readonly Rectangle[,] rectangle = new Rectangle[row, col];
         private readonly int[,] Arr = new int[row, col]; 
         private readonly DispatcherTimer dtimer = new DispatcherTimer();
@@ -60,7 +60,7 @@ namespace com.smallDisplay.Robust
         ColorPicker colorPicker = new ColorPicker();
         StackPanel stack = new StackPanel();
         bool text = false, shadow = false;
-        DateTime DateTime = new DateTime();
+        bool date = false;
         
 
         public MainPage()
@@ -72,28 +72,29 @@ namespace com.smallDisplay.Robust
             dtimer.Start();
             MoveLetters.SetIntArrToNum(Arr,0);
             InputStringToDisplay.Focus(FocusState.Pointer);
-            
-            
+
+
             
         }
 
         private void Dtimer_Tick(object sender, object e)
         {
-            
-            /*MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);*/
+
+            MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);
             MoveLetters.ColorOcupiedLabels(Arr, rectangle, ColorofLetters, solidBlack, LetterBorrders);
 
-            /*if (Repeat.IsChecked == false)
+            if (Repeat.IsChecked == false)
             {
                 RepeatNOtChecked();
-            } else if (Repeat.IsChecked == true)
+            }
+            else if (Repeat.IsChecked == true)
             {
                 RepeatString();
             }
 
 
-            if (counter == 10) counter = 0;*/
-            MoveLetters.InsertTextToMiddle(Arr,row,col);
+            if (counter == 10) counter = 0;
+
 
         }
 
@@ -107,6 +108,7 @@ namespace com.smallDisplay.Robust
                 {
                     
                     var nextLetter = (char)str.Dequeue();
+                    nextLetter = ChecksForSpecChar(nextLetter);
                     LetterArr = Letters.ReturnArrLetter(nextLetter);
                     CharPrinted = false;
                 }
@@ -162,7 +164,9 @@ namespace com.smallDisplay.Robust
 
                     if (str.Count > 0)
                     {
+
                         var nextLetter = (char)str.Dequeue();
+                        nextLetter = ChecksForSpecChar(nextLetter);
                         LetterArr = Letters.ReturnArrLetter(nextLetter);
                         CharPrinted = false;
 
@@ -182,6 +186,27 @@ namespace com.smallDisplay.Robust
             }
         }
 
+        private char ChecksForSpecChar(char nextLetter)
+        {
+            if (MoveLetters.CheckForSecChar(nextLetter, '|'))
+            {
+                nextLetter = (char)str.Dequeue();
+                if (MoveLetters.CheckForSecChar(nextLetter, 'D'))
+                {
+                    str = str.AddAtFrontOfQueue('D');
+                    nextLetter = (char)str.Dequeue();
+                }
+                else if (MoveLetters.CheckForSecChar(nextLetter, 'T'))
+                {
+                    str = str.AddAtFrontOfQueue('T');
+                    nextLetter = (char)str.Dequeue();
+                }
+
+            }
+
+            return nextLetter;
+        }
+
         /// <summary>
         /// Register a Enter key if text box has input string
         /// </summary>
@@ -198,7 +223,7 @@ namespace com.smallDisplay.Robust
                 {
                     if (!countinious)
                     {
-                        if (!WordInput && !MoveLetters.CheckForZero(Arr))
+                        /*if (!WordInput && !MoveLetters.CheckForZero(Arr))
                         {
                             clear();
                         }
@@ -207,7 +232,7 @@ namespace com.smallDisplay.Robust
                             counter = 10;
                             clear();
                             
-                        }  
+                        }  */
                     }
 
                     if (countinious && str.Count !=0)
@@ -260,6 +285,7 @@ namespace com.smallDisplay.Robust
         /// <param name="sender"></param>
         /// <param name="e"></param>
         
+            
 
 
         private void Repeat_Checked(object sender, RoutedEventArgs e)
@@ -350,5 +376,7 @@ namespace com.smallDisplay.Robust
             }
             
         }
+
+
     }
 }
