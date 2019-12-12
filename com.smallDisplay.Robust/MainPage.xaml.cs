@@ -43,7 +43,7 @@ namespace com.smallDisplay.Robust
 
         internal const short row = 100;
         internal const short col = 20;
-        private readonly sbyte sizeOfRect = 8;
+        private readonly sbyte sizeOfRect = 6;
         private readonly Rectangle[,] rectangle = new Rectangle[row, col];
         private readonly int[,] Arr = new int[row, col]; 
         private readonly DispatcherTimer dtimer = new DispatcherTimer();
@@ -60,7 +60,9 @@ namespace com.smallDisplay.Robust
         ColorPicker colorPicker = new ColorPicker();
         StackPanel stack = new StackPanel();
         bool text = false, shadow = false;
-        bool date = false;
+        bool dateTime = false;
+        bool date, time;
+        
         
 
         public MainPage()
@@ -80,20 +82,30 @@ namespace com.smallDisplay.Robust
         private void Dtimer_Tick(object sender, object e)
         {
 
-            MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);
-            MoveLetters.ColorOcupiedLabels(Arr, rectangle, ColorofLetters, solidBlack, LetterBorrders);
-
-            if (Repeat.IsChecked == false)
+            if (!dateTime)
             {
-                RepeatNOtChecked();
+                MoveLetters.MoveDisplayUp(Arr, row, col, solidBlack, ColorofLetters);
+                MoveLetters.ColorOcupiedLabels(Arr, rectangle, ColorofLetters, solidBlack, LetterBorrders);
+
+                if (Repeat.IsChecked == false)
+                {
+                    RepeatNOtChecked();
+                }
+                else if (Repeat.IsChecked == true)
+                {
+                    RepeatString();
+                }
+
+
+                if (counter == 10) counter = 0;
             }
-            else if (Repeat.IsChecked == true)
+            else
             {
-                RepeatString();
+                MoveLetters.ColorOcupiedLabels(Arr, rectangle, ColorofLetters, solidBlack, LetterBorrders);
+                MoveLetters.InsertTextToMiddle(Arr, row, col, time, date,"");
+                
+
             }
-
-
-            if (counter == 10) counter = 0;
 
 
         }
@@ -216,14 +228,16 @@ namespace com.smallDisplay.Robust
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                
+                dateTime = false;
+                date = false;
+                time = false;
 
                 if (!string.IsNullOrEmpty(InputStringToDisplay.Text) ||
                     !string.IsNullOrWhiteSpace(InputStringToDisplay.Text))
                 {
                     if (!countinious)
                     {
-                        /*if (!WordInput && !MoveLetters.CheckForZero(Arr))
+                        if (!WordInput && !MoveLetters.CheckForZero(Arr))
                         {
                             clear();
                         }
@@ -231,8 +245,9 @@ namespace com.smallDisplay.Robust
                         {
                             counter = 10;
                             clear();
-                            
-                        }  */
+
+                        }
+
                     }
 
                     if (countinious && str.Count !=0)
@@ -360,6 +375,20 @@ namespace com.smallDisplay.Robust
             SelectColorPanel.Visibility = Visibility.Collapsed;
             shadow = false;
             text = false;
+        }
+
+        private void TimeButton_Click(object sender, RoutedEventArgs e)
+        {
+            dateTime = true;
+            time = true;
+            date = false;
+        }
+
+        private void DateButton_Click(object sender, RoutedEventArgs e)
+        {
+            dateTime = true;
+            date = true;
+            time = false;
         }
 
         private void ColorSelecter_Copy_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)

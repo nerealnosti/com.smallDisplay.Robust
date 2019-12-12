@@ -13,7 +13,7 @@
         <SolidColorBrush x:Key="Gray" Color="Gray" />
         <SolidColorBrush x:Key="Blacks" Color="Black" />
         <SolidColorBrush x:Key="Red" Color="Red" />
-
+        
 
 
         <FontFamily x:Key="pixelFont" >I pixel u</FontFamily>
@@ -846,6 +846,45 @@
                 </Grid>
             </StackPanel>
         </RelativePanel>
+
+
+        <Button Name="TimeButton"
+                RelativePanel.Below="ShadowColor"
+                RelativePanel.AlignLeftWith="ShadowColor"
+                Click="TimeButton_Click">
+            <Grid>
+                <Ellipse Width="50" Height="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="Assets\buttonTime.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                    
+                
+            </Grid>
+         </Button>
+
+        <Button Name="DateButton"
+                RelativePanel.RightOf="TimeButton"
+                RelativePanel.Below="ShadowColor"
+                Click="DateButton_Click">
+            <Grid>
+                <Rectangle Width="50" Height="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Assets\buttonDate.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+
+            </Grid>
+        </Button>
+
+        <TextBlock RelativePanel.RightOf="TitleText" Text="Tips: &#x0d;To insert date type |D&#x0d; &#x0d;To insert current time type |T "
+                   FontFamily="{StaticResource pixelFont}" FontSize="20"
+                   Foreground="Red" MaxWidth="200"
+                   TextWrapping="WrapWholeWords"
+                   TextLineBounds="Full">
+            
+        </TextBlock>
 
 
     </RelativePanel>

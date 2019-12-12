@@ -186,12 +186,11 @@ namespace com.smallDisplay.Robust.Classes
 
         }
 
-        internal static void InsertTextToMiddle(int [,] Arr,int row, int col,bool Time, bool Date, string str,bool trueORfalse)
+        internal static void InsertTextToMiddle(int [,] Arr,int row, int col,bool Time, bool Date, string str)
         {
-            if (trueORfalse)
-            {
-                SetIntArrToNum(Arr, 0); 
-            }
+            
+            SetIntArrToNum(Arr, 0); 
+            
             string time = "";
             string date = "";
 
