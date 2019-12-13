@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.smallDisplay.Robust.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace com.smallDisplay.Robust
@@ -22,6 +24,7 @@ namespace com.smallDisplay.Robust
     /// </summary>
     public sealed partial class FontEdit : Page
     {
+        
         public FontEdit()
         {
             this.InitializeComponent();

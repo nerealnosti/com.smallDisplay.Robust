@@ -676,7 +676,8 @@
         <TextBox RelativePanel.AlignHorizontalCenterWithPanel="True"
                      RelativePanel.AlignVerticalCenterWithPanel="True"
                      Margin="10"
-                     Style="{StaticResource TextboxBackChanged}" x:Name="InputStringToDisplay"
+                     Style="{StaticResource TextboxBackChanged}" 
+                     x:Name="InputStringToDisplay"
                      Background="#09090A"
                      FontFamily="{StaticResource pixelFont}"
                      FontSize="25"
@@ -871,11 +872,7 @@
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="Assets\buttonDate.png"/>
                     </Rectangle.Fill>
-                    <Custom:Interaction.Behaviors>
-                        <Custom1:EventTriggerBehavior EventName="PointerPressed">
-                            <Custom2:PlaySoundAction/>
-                        </Custom1:EventTriggerBehavior>
-                    </Custom:Interaction.Behaviors>
+                    
                 </Rectangle>
 
 
