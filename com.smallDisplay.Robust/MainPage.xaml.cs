@@ -384,6 +384,11 @@ namespace com.smallDisplay.Robust
             date = false;
         }
 
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(FontEdit));
+        }
+
         private void DateButton_Click(object sender, RoutedEventArgs e)
         {
             dateTime = true;
