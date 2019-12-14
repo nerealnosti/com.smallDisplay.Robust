@@ -16,7 +16,7 @@ namespace com.smallDisplay.Robust.Classes
     /// Create Grid or Rectangle and set event PointerExited to every Rect that change color when mouse leaves area of 
     /// rectangle
     /// </summary>
-    class Board
+    class Board 
     {
         /// <summary>
         ///  Create Grid or Rectangle and set event PointerExited to every Rect that change color when mouse leaves area of 
@@ -64,7 +64,7 @@ namespace com.smallDisplay.Robust.Classes
                         StrokeThickness = 1
                     };
 
-                    rects[i, j].PointerExited += Board_PointerExited;
+                    rects[i, j].PointerPressed += Board_PointerPressed; ;
                     Grid.SetRow(rects[i, j], j);
                     Grid.SetColumn(rects[i, j], i);
                     mainGrid.Children.Add(rects[i, j]);
@@ -77,25 +77,27 @@ namespace com.smallDisplay.Robust.Classes
 
         }
 
-        private void Board_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        
+
+        private void Board_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             var temp = (Rectangle)sender;
             Color red = Colors.Red;
             Color black = Colors.Black;
+            var B = new SolidColorBrush(black);
+            var C = new SolidColorBrush(red);
+            SolidColorBrush CurrColor = (SolidColorBrush)temp.Fill;
 
-            if (temp.Fill == new  SolidColorBrush(red))
+            if (CurrColor.Color == C.Color)
             {
                 temp.Fill = new SolidColorBrush(black);
             }
-            else
+            else if (CurrColor.Color == B.Color)
             {
                 temp.Fill = new SolidColorBrush(red);
             }
-
-
-
-
         }
+
             
         
 

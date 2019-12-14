@@ -4,7 +4,6 @@
     xmlns:local="using:com.smallDisplay.Robust"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core" xmlns:Custom2="using:Microsoft.Xaml.Interactions.Media"
     x:Class="com.smallDisplay.Robust.MainPage"
     mc:Ignorable="d"
     Background="Black">
@@ -740,8 +739,8 @@
                           Foreground="Gray" 
                           Background="#09090A" 
                           FontFamily="{StaticResource pixelFont}"
-                          Checked="continuousWordPPrint_Checked"
-                          Unchecked="continuousWordPPrint_Unchecked"
+                          Checked="ContinuousWordPPrint_Checked"
+                          Unchecked="ContinuousWordPPrint_Unchecked"
                           />
         </StackPanel>
 

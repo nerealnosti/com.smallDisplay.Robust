@@ -52,13 +52,9 @@ namespace com.smallDisplay.Robust
         private bool WordInput = false;
         private bool CharPrinted = true;
         private int[,] LetterArr;
-        private List<Button> ButtonsEnabled = new List<Button>();
-        private List<Button> ButtonsShadowEnabled = new List<Button>();
         private string stringtoRepeat = "";
         private static int countToClearScreen = 0;
         private bool countinious = false;
-        ColorPicker colorPicker = new ColorPicker();
-        StackPanel stack = new StackPanel();
         bool text = false, shadow = false;
         bool dateTime = false;
         bool date, time;
@@ -239,12 +235,12 @@ namespace com.smallDisplay.Robust
                     {
                         if (!WordInput && !MoveLetters.CheckForZero(Arr))
                         {
-                            clear();
+                            Clear();
                         }
                         else if (WordInput)
                         {
                             counter = 10;
-                            clear();
+                            Clear();
 
                         }
 
@@ -337,19 +333,19 @@ namespace com.smallDisplay.Robust
 
         }
 
-        private void clear() {
+        private void Clear() {
 
             stringtoRepeat = "";
             str.Clear();
             MoveLetters.SetIntArrToNum(Arr, 0);
         }
 
-        private void continuousWordPPrint_Checked(object sender, RoutedEventArgs e)
+        private void ContinuousWordPPrint_Checked(object sender, RoutedEventArgs e)
         {
             countinious = true;
         }
 
-        private void continuousWordPPrint_Unchecked(object sender, RoutedEventArgs e)
+        private void ContinuousWordPPrint_Unchecked(object sender, RoutedEventArgs e)
         {
             countinious = false;
         }

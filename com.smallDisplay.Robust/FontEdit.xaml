@@ -175,16 +175,20 @@
         
     </Page.Resources>
     <Grid>
-        <RelativePanel VerticalAlignment="Center"
+        <RelativePanel x:Name="Xibit"
+                       VerticalAlignment="Center"
                        HorizontalAlignment="Center">
             <TextBlock x:Name="Title"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
                        FontFamily="{StaticResource pixelFont}"
                        FontSize="25"
-                       Foreground="Red">
+                       Foreground="Red"
+                       >
                 Enter letter to edit
                 
             </TextBlock>
-            <TextBox Style="{StaticResource TxtBox}" RelativePanel.Below="Title" 
+            <TextBox x:Name="inputTextbox"
+                     Style="{StaticResource TxtBox}" RelativePanel.Below="Title" 
                      RelativePanel.AlignHorizontalCenterWith="Title"
                      HorizontalAlignment="Center"
                      Background="#09090A"
@@ -197,9 +201,14 @@
                      HorizontalContentAlignment="Center"
                      TextAlignment="Center"
                      MaxLength="1"
+                     KeyDown="RegisterEnterFontEdit"
                      >
 
             </TextBox>
+            <Grid x:Name="LetterArrayGrid"
+                  RelativePanel.Below="inputTextbox">
+                
+            </Grid>
         </RelativePanel>
         
     </Grid>
